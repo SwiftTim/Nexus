@@ -1,22 +1,20 @@
-# fly.toml app configuration file generated for nexus-main on 2026-02-08T23:05:43+03:00
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
+# fly.toml for TIM NEXUS (MASTER SSL CONFIG)
 app = 'nexus-main'
 primary_region = 'jnb'
 
 [build]
 
 [[services]]
-  internal_port = 5555
+  internal_port = 10000
   protocol = "tcp"
   auto_stop_machines = false
   auto_start_machines = true
   min_machines_running = 1
 
   [[services.ports]]
-    port = 5555
+    port = 443
+    # TLS handler makes this work on the Shared IPv4!
+    handlers = ["tls"]
 
 [[vm]]
   memory = '1gb'
